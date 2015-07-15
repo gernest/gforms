@@ -7,7 +7,7 @@ import (
 
 const defaultTemplates = `
 {{define "TextTypeField"}}<input type="text" name="{{.Field.GetName | html}}" value="{{.Value | html}}"></input>{{end}}
-{{define "TextAreaField"}}<textarea  name="{{.Field.GetName | html}}" value="{{.Value | html}}"></textarea>{{end}}
+{{define "TextAreaField"}}<textarea  name="{{.Field.GetName | html}}" value="{{.Value | html}}" {{range $attr, $val := .Attrs}} {{$attr | html}}="{{$val | html}}"{{end}}></textarea>{{end}}
 {{define "BooleanTypeField"}}<input type="checkbox" name="{{.Field.GetName | html}}"{{if .Checked}} checked{{end}}>{{end}}
 {{define "SimpleWidget"}}<input type="{{.Type | html}}" name="{{.Field.GetName | html}}" value="{{.Value | html}}"{{range $attr, $val := .Attrs}} {{$attr | html}}="{{$val | html}}"{{end}}></input>{{end}}
 {{define "SelectWidget"}}<select {{if .Multiple }}multiple {{end}}name="{{.Field.GetName | html}}"{{range $attr, $val := .Attrs}}{{$attr | html}}="{{$val | html}}"{{end}}>
